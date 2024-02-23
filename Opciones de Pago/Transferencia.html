@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Transferencia Bancaria</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card col-md-6 mx-auto">
+            <div class="card-body">
+                <h5 class="card-title">Transferencia Bancaria</h5>
+
+                <!-- Formulario de Transferencia Bancaria -->
+                <form id="bankTransferForm">
+                    <div class="form-group">
+                        <label for="accountHolder">Titular de la Cuenta:</label>
+                        <input type="text" class="form-control" id="accountHolder" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountNumber">Número de Cuenta:</label>
+                        <input type="tel" class="form-control" id="accountNumber" pattern="[0-9]+" title="Solo se permiten números" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Monto a Transferir:</label>
+                        <input type="number" class="form-control" id="amount" min="0" required>
+                    </div>
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-primary" onclick="confirmarTransferencia()">Confirmar Transferencia</button>
+                        <button type="button" class="btn btn-primary btn-cancel ml-auto" onclick="cancelarTransferencia()">Cancelar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmarTransferencia() {
+            // Recopila la información del formulario
+            const accountHolder = document.getElementById('accountHolder').value;
+            const accountNumber = document.getElementById('accountNumber').value;
+            const amount = document.getElementById('amount').value;
+
+            // Valida que el número de cuenta solo contenga dígitos
+            if (!/^\d+$/.test(accountNumber)) {
+                alert('El número de cuenta debe contener solo dígitos.');
+                return;
+            }
+
+            if (amount < 0) {
+                alert('El monto a transferir no puede ser negativo.');
+                return;
+            }
+
+            console.log('Titular de la Cuenta: ', accountHolder);
+            console.log('Número de Cuenta: ', accountNumber);
+            console.log('Monto a Transferir: ', amount);
+
+        }
+
+        function cancelarTransferencia() {
+            window.location.href = "Carrito.html";
+        }
+    </script>
+
+    <style>
+        .btn-cancel {
+            background-color: #007bff; 
+            margin-left: 10px; 
+        }
+    </style>
+
+</body>
+</html>
