@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto/Servicio de Proveedor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+
+        #form-container {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button {
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+            .button:hover {
+                background-color: #2185d0;
+            }
+
+        #preview {
+            max-width: 100%;
+            height: auto;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agregar Producto/Servicio de Proveedor</h1>
+
+        <div id="form-container">
+            <div class="form-group">
+                <label for="producto">Producto/Servicio:</label>
+                <input type="text" id="producto">
+            </div>
+            <div class="form-group">
+                <label for="Tallas Disponibles">Tallas Disponibles:</label>
+                <input type="text" id="Tallas Disponibles">
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" id="precio" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" accept="image/*">
+                <img id="preview" src="" alt="Vista previa de la imagen" style="display: none;">
+            </div>
+            <button class="button" onclick="agregarProducto()">Agregar Producto/Servicio</button>
+        </div>
+    </div>
+
+    <script>
+    // Verificar si hay productos almacenados en localStorage al cargar la página
+        var productos = JSON.parse(localStorage.getItem('productos')) || [];
+
+        function agregarProducto() {
+            var producto = document.getElementById('producto').value;
+            var producto = document.getElementById('Tallas Disponibles').value;
+            var precio = document.getElementById('precio').value;
+            var imagen = document.getElementById('imagen').files[0];
+
+            // Validar que se haya ingresado un proveedor, producto, precio y imagen
+            if (proveedor.trim() === '' || producto.trim() === '' || precio.trim() === '' || !imagen) {
+                alert('Por favor, complete todos los campos.');
+                return;
+            }
+
+            // Crear un objeto de tipo FileReader para leer el contenido de la imagen
+            var reader = new FileReader();
+
+            // Configurar la función de retorno de llamada cuando la lectura del archivo esté completa
+            reader.onload = function (event) {
+                // Obtener la URL de la imagen cargada
+                var imageUrl = event.target.result;
+
+                // Agregar el producto/servicio al arreglo
+                productos.push({ proveedor: proveedor, producto: producto, precio: parseFloat(precio), imagen: imageUrl });
+
+                // Limpiar los campos del formulario
+                document.getElementById('producto').value = '';
+                document.getElementById('precio').value = '';
+                document.getElementById('imagen').value = '';
+                document.getElementById('Tallas Disponibles').value = '';
+                document.getElementById('preview').src = '';
+                document.getElementById('preview').style.display = 'none';
+
+                // Guardar el arreglo de productos en localStorage
+                localStorage.setItem('productos', JSON.stringify(productos));
+
+                // Mostrar mensaje de éxito
+                alert("El producto/servicio se ha agregado correctamente.");
+
+                // Redireccionar a la página principal
+                window.location.href = "TiendaOnline.html";
+            };
+
+            // Leer el contenido del archivo de imagen como una URL de datos
+            reader.readAsDataURL(imagen);
+        }</script>
+    </div>
+</body>
+</html>

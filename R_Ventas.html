@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Ventas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #0db2b8;
+            color: #ffffff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #0db2b8;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #088a94;
+            }
+
+        h2 {
+            background-color: #0db2b8;
+            color: #ffffff;
+            padding: 10px;
+            margin: 20px 0 10px 0;
+        }
+
+        #busqueda-ventas {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #0e0101;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #0db2b8;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registro de Ventas</h1>
+
+    <form id="registro-venta">
+        <label for="nombre-producto">Nombre del Producto:</label>
+        <input type="text" id="nombre-producto" required><br>
+        <label for="cantidad-producto">Cantidad de Productos:</label>
+        <input type="number" id="cantidad-producto" required><br>
+        <label for="precio-unitario">Precio Unitario:</label>
+        <input type="number" step="0.01" id="precio-unitario" required><br>
+        <label for="monto-recibido">Monto Recibido:</label>
+        <input type="number" id="monto-recibido" required><br>
+        <input type="submit" value="Registrar Venta">
+    </form>
+
+    <h2>Busqueda de Ventas Realizadas</h2>
+    <input type="text" id="busqueda-ventas" placeholder="Buscar ventas">
+    <br><br>
+    <table id="tabla-ventas">
+        <tr>
+            <th>Nombre del Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Monto Recibido</th>
+            <th>Cambio</th>
+        </tr>
+    </table>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            let ventasGuardadas = JSON.parse(localStorage.getItem('ventas')) || [];
+            mostrarVentas(ventasGuardadas);
+
+            document.getElementById('registro-venta').addEventListener('submit', function (e) {
+                e.preventDefault();
+                let nombre = document.getElementById('nombre-producto').value;
+                let cantidad = document.getElementById('cantidad-producto').value;
+                let precio = document.getElementById('precio-unitario').value;
+                let monto = document.getElementById('monto-recibido').value;
+                let cambio = parseFloat(monto) - (parseInt(cantidad) * parseFloat(precio));
+                ventasGuardadas.push({ nombre: nombre, cantidad: cantidad, precio: precio, monto: monto, cambio: cambio.toFixed(2) });
+                localStorage.setItem('ventas', JSON.stringify(ventasGuardadas));
+                mostrarVentas(ventasGuardadas);
+            });
+
+            document.getElementById('busqueda-ventas').addEventListener('keyup', function () {
+                let input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById('busqueda-ventas');
+                filter = input.value.toUpperCase();
+                table = document.getElementById('tabla-ventas');
+                tr = table.getElementsByTagName('tr');
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName('td')[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = '';
+                        } else {
+                            tr[i].style.display = 'none';
+                        }
+                    }
+                }
+            });
+
+            function mostrarVentas(ventas) {
+                let tablaVentas = document.getElementById('tabla-ventas');
+                tablaVentas.innerHTML = '<tr><th>Nombre del Producto</th><th>Cantidad</th><th>Precio Unitario</th><th>Monto Recibido</th><th>Cambio</th></tr>';
+
+                ventas.forEach((venta) => {
+                    let newRow = tablaVentas.insertRow(-1);
+                    let newCell1 = newRow.insertCell(0);
+                    let newCell2 = newRow.insertCell(1);
+                    let newCell3 = newRow.insertCell(2);
+                    let newCell4 = newRow.insertCell(3);
+                    let newCell5 = newRow.insertCell(4);
+                    newCell1.innerHTML = venta.nombre;
+                    newCell2.innerHTML = venta.cantidad;
+                    newCell3.innerHTML = venta.precio;
+                    newCell4.innerHTML = venta.monto;
+                    newCell5.innerHTML = venta.cambio;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

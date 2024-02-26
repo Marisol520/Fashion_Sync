@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Compra contra Entrega</title>
+    <!-- Agrega los enlaces a los estilos de Bootstrap y cualquier otro archivo CSS necesario -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card col-md-6 mx-auto">
+            <div class="card-body">
+                <h5 class="card-title">Compra contra Entrega</h5>
+
+                <!-- Formulario de Compra contra Entrega -->
+                <form id="codForm">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Dirección de Entrega:</label>
+                        <textarea class="form-control" id="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderDetails">Detalles del Pedido:</label>
+                        <textarea class="form-control" id="orderDetails" rows="3" required></textarea>
+                    </div>
+
+                    <!-- Botones de Confirmación de Compra contra Entrega y Cancelar -->
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-primary" onclick="confirmarCompra()">Confirmar Compra</button>
+                        <button type="button" class="btn btn-primary btn-cancel ml-auto" onclick="cancelarCompra()">Cancelar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para manejar la confirmación de la compra contra entrega
+        function confirmarCompra() {
+            // Recopila la información del formulario
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const orderDetails = document.getElementById('orderDetails').value;
+
+            // Aquí puedes agregar la lógica para enviar la información al servidor y procesar la compra contra entrega
+            console.log('Nombre: ', name);
+            console.log('Dirección de Entrega: ', address);
+            console.log('Detalles del Pedido: ', orderDetails);
+
+            // Puedes realizar acciones adicionales según tu lógica de negocios
+        }
+
+        // Función para cancelar la compra contra entrega y redirigir
+        function cancelarCompra() {
+            // Redirigir a una página específica al cancelar
+            window.location.href = "Carrito.html";
+        }
+    </script>
+
+    <style>
+        /* Estilo personalizado para el botón de cancelar */
+        .btn-cancel {
+            background-color: #007bff; /* Color azul */
+            margin-left: 10px; /* Ajusta el margen izquierdo para el espacio entre botones */
+        }
+    </style>
+
+</body>
+</html>
+

@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones Personalizadas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Notificaciones Personalizadas</h1>
+
+        <form>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Preferencias de notificación:</label><br>
+                <div class="form-check">
+                    <input type="checkbox" id="nuevaColeccion" class="form-check-input">
+                    <label for="nuevaColeccion" class="form-check-label">Nueva colección</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="nuevaPublicacion" class="form-check-input">
+                    <label for="nuevaPublicacion" class="form-check-label">Nueva publicación</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="nuevoMensaje" class="form-check-input">
+                    <label for="nuevoMensaje" class="form-check-label">Nuevo mensaje</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="ofertaEspecial" class="form-check-input">
+                    <label for="ofertaEspecial" class="form-check-label">Oferta especial</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="recordatorioEspecial" class="form-check-input">
+                    <label for="recordatorioEspecial" class="form-check-label">Recordatorio especial</label>
+                </div>
+                <!-- Nuevas preferencias de notificación -->
+                <div class="form-check">
+                    <input type="checkbox" id="nuevoPedido" class="form-check-input">
+                    <label for="nuevoPedido" class="form-check-label">Nuevo pedido</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="pedidoEnviado" class="form-check-input">
+                    <label for="pedidoEnviado" class="form-check-label">Pedido enviado</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="pedidoEntregado" class="form-check-input">
+                    <label for="pedidoEntregado" class="form-check-label">Pedido entregado</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="articuloAgotado" class="form-check-input">
+                    <label for="articuloAgotado" class="form-check-label">Artículo agotado</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="descuentoExclusivo" class="form-check-input">
+                    <label for="descuentoExclusivo" class="form-check-label">Descuento exclusivo</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="aniversarioCliente" class="form-check-input">
+                    <label for="aniversarioCliente" class="form-check-label">Aniversario cliente</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="envioGratis" class="form-check-input">
+                    <label for="envioGratis" class="form-check-label">Envío gratis</label>
+
+                    <script>// Función para redirigir según la notificación seleccionada
+                        function redirectToNotification() {
+                            if (document.getElementById('nuevaColeccion').checked) {
+                                window.location.href = 'https://tusitio.com/nueva-coleccion';
+                            } else if (document.getElementById('nuevaPublicacion').checked) {
+                                window.location.href = 'https://tusitio.com/nueva-publicacion';
+                            } else if (document.getElementById('nuevoMensaje').checked) {
+                                window.location.href = 'https://tusitio.com/nuevo-mensaje';
+                            } else if (document.getElementById('ofertaEspecial').checked) {
+                                window.location.href = 'https://tusitio.com/oferta-especial';
+                            } else if (document.getElementById('recordatorioEspecial').checked) {
+                                window.location.href = 'https://tusitio.com/recordatorio-especial';
+                            } else if (document.getElementById('nuevoPedido').checked) {
+                                window.location.href = 'https://tusitio.com/nuevo-pedido';
+                            } else if (document.getElementById('pedidoEnviado').checked) {
+                                window.location.href = 'https://tusitio.com/pedido-enviado';
+                            } else if (document.getElementById('pedidoEntregado').checked) {
+                                window.location.href = 'https://tusitio.com/pedido-entregado';
+                            } else if (document.getElementById('articuloAgotado').checked) {
+                                window.location.href = 'https://tusitio.com/articulo-agotado';
+                            } else if (document.getElementById('descuentoExclusivo').checked) {
+                                window.location.href = 'https://tusitio.com/descuento-exclusivo';
+                            } else if (document.getElementById('aniversarioCliente').checked) {
+                                window.location.href = 'https://tusitio.com/aniversario-cliente';
+                            } else if (document.getElementById('envioGratis').checked) {
+                                window.location.href = 'https://tusitio.com/envio-gratis';
+                            }
+                        }
+
+                        // Agrega un evento de escucha a todos los checkboxes para llamar a la función al cambiar
+                        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                        checkboxes.forEach(checkbox => {
+                            checkbox.addEventListener('change', redirectToNotification);
+                        });</script>
+
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar Preferencias</button>
+        </form>
+    </div>
+</body>
+</html>

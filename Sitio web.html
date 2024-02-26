@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Línea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('Ropa/Fond.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product {
+            width: calc(30% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 0 0 20px 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+            .product img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .product h2 {
+                font-size: 16px;
+                margin-top: 0;
+            }
+
+            .product p {
+                font-size: 14px;
+            }
+
+            .product button {
+                background-color: #333;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .menu li {
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+            .menu a {
+                color: #fff;
+                text-decoration: none;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #333;
+            }
+
+                .menu a:hover {
+                    background-color: #555;
+                }
+
+
+        #formulario-container {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            #formulario-container h2 {
+                color: #333;
+                text-align: center;
+            }
+
+            #formulario-container div {
+                margin-bottom: 15px;
+            }
+
+            #formulario-container label {
+                display: block;
+                margin-bottom: 5px;
+                color: #555;
+            }
+
+            #formulario-container input,
+            #formulario-container select {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            #formulario-container button {
+                background-color: #3498db;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-size: 16px;
+                width: 100%;
+            }
+
+                #formulario-container button:hover {
+                    background-color: #2185d0;
+                }
+
+            #formulario-container input[type="file"] {
+                margin-top: 10px;
+            }
+    </style>
+</head>
+<body>
+    <p>
+        Bienvenido a Fashion_Syn nuestra tienda en línea. Aquí encontrarás una amplia selección de productos de moda para hombres y mujeres.
+        De diferentes tallas y precios como a ti te gusta :)
+    </p>
+    <header>
+        <h1>Tienda en Línea</h1>
+        <ul class="menu" id="menu">
+            <li><a href="C_Proveedores.html" class="crear-perfil-link">Crear Perfil de Proveedor</a></li>
+            <li><a href="Agregarproductooservicio.html" class="agregar-producto-link">Agregar Producto/Servicio de Proveedor</a></li>
+            <li><a href="Notificaciones.html" class="noti_link">Notificaciones Personalizadas</a></li>
+            <li><a href="R_Ventas.html" class="ventas_link">Registro de Ventas</a></li>
+            <li><a href="Metodos.html" class="pagos_link">Metodos de pago</a></li>
+            <li><a href="LugarEntrega.html" class="entregas_link">Lugar de Entrega</a></li>
+        </ul>
+    </header>
+    <div class="container" id="productos-container"></div>
+    <div class="product">
+        <img src="Ropa/Sudadera.jpg" alt="Producto 1">
+        <h2>Sudadera negro y blanco</h2>
+        <p>Tallas disponibles: S, M, L</p>
+        <p>Precio: $19.99</p>
+        <button onclick="agregarAlCarrito('Sudadera negro y blanco', 19.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+
+        <img src="Ropa/pedido-1-producto-17.jpg" alt="Producto 2">
+        <h2>Camisa mujer</h2>
+        <p>Tallas disponibles: S, L, XL</p>
+        <p>Precio: $24.99</p>
+        <button onclick="agregarAlCarrito('Camisa mujer', 24.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/pant.jpg" alt="Producto 2">
+        <h2>Pántalon</h2>
+        <p>Tallas disponibles: M, S, L, XL</p>
+        <p>Precio: $10.99</p>
+        <button onclick="agregarAlCarrito('Pantalon', 10.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/Pan.jpg" alt="Producto 2">
+        <h2>Pantalon Cargo</h2>
+        <p>Tallas disponibles: S, L, XL</p>
+        <p>Precio: $15.99</p>
+        <button onclick="agregarAlCarrito('Pantalon Cargo', 24.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/Conjunto.jpg" alt="Producto 2">
+        <h2>Muda Mujer</h2>
+        <p>Tallas disponibles: S, L, XL</p>
+        <p>Precio: $19.99</p>
+        <button onclick="agregarAlCarrito('Muda mujer', 19.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/Chunpa.jpg" alt="Producto 2">
+        <h2>Chumpa</h2>
+        <p>Tallas disponibles: S, L, XL</p>
+        <p>Precio: $12.99</p>
+        <button onclick="agregarAlCarrito('Chumpa', 12.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/Chaqueta.jpg" alt="Producto 2">
+        <h2>Chaqueta</h2>
+        <p>Tallas disponibles: M, S, L, XL</p>
+        <p>Precio: $24.99</p>
+        <button onclick="agregarAlCarrito('Chaqueta', 24.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/Chacs.jpg" alt="Producto 2">
+        <h2>Camisa manga larga</h2>
+        <p>Tallas disponibles: S, L, XL</p>
+        <p>Precio: $15.99</p>
+        <button onclick="agregarAlCarrito('Camisa manga larga', 15.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/Cam.jpg" alt="Producto 2">
+        <h2>Camisa </h2>
+        <p>Tallas disponibles: M, S, L, XL</p>
+        <p>Precio: $14.99</p>
+        <button onclick="agregarAlCarrito('Camisa ', 14.99)">Agregar al Carrito</button>
+    </div>
+    <div class="product">
+        <img src="Ropa/Adidas.jpg" alt="Producto 2">
+        <h2>Sueter adida 2x1</h2>
+        <p>Tallas disponibles: S, L, XL</p>
+        <p>Precio: $20.99</p>
+        <button onclick="agregarAlCarrito('Adida 2x1', 20.99)">Agregar al Carrito</button>
+    </div>
+    <div class="container" id="formulario-container">
+        <h2>Agregar Nuevo Producto</h2>
+        <div>
+            <label for="producto">Producto:</label>
+            <input type="text" id="producto">
+        </div>
+        <div>
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" step="0.01">
+        </div>
+        <div>
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" accept="image/*">
+        </div>
+        <button onclick="agregarProducto()">Agregar Producto</button>
+    </div>
+
+    <script>
+        // Función para mostrar los productos en el catálogo
+        function mostrarProductos() {
+            var container = document.getElementById('productos-container');
+            container.innerHTML = ''; // Limpiar el contenido anterior
+
+            try {
+                // Obtener productos del almacenamiento local
+                var productosString = localStorage.getItem('productos');
+                if (productosString) {
+                    var productos = JSON.parse(productosString);
+
+                    // Iterar sobre los productos y mostrar cada uno
+                    productos.forEach(function (producto, index) {
+                        var div = document.createElement('div');
+                        div.className = 'product';
+                        div.innerHTML = `
+                                        <img src="${producto.imagen}" alt="${producto.producto}">
+                                        <h2>${producto.producto}</h2>
+                                        <p>Precio: $${producto.precio.toFixed(2)}</p>
+                                        <button class="delete-btn" onclick="eliminarProducto(${index})">X</button>
+                                        <button onclick="agregarAlCarrito('${producto.producto}', ${producto.precio})">Agregar al Carrito</button>
+                                    `;
+                        container.appendChild(div);
+                    });
+                }
+            } catch (error) {
+                console.error('Error al mostrar productos:', error);
+            }
+        }
+
+        // Llamar a la función mostrarProductos al cargar la página
+        mostrarProductos();
+
+        // Función para agregar un nuevo producto
+        function agregarProducto() {
+            var producto = document.getElementById('producto').value;
+            var precio = document.getElementById('precio').value;
+            var imagen = document.getElementById('imagen').files[0];
+
+            // Validar que se haya ingresado un producto, precio y imagen
+            if (producto.trim() === '' || precio.trim() === '' || !imagen) {
+                alert('Por favor, complete todos los campos.');
+                return;
+            }
+
+            // Crear un objeto de tipo FileReader para leer el contenido de la imagen
+            var reader = new FileReader();
+
+            // Configurar la función de retorno de llamada cuando la lectura del archivo esté completa
+            reader.onload = function (event) {
+                // Obtener la URL de la imagen cargada
+                var imageUrl = event.target.result;
+
+                // Crear el objeto de producto
+                var nuevoProducto = {
+                    producto: producto,
+                    precio: parseFloat(precio),
+                    imagen: imageUrl
+                };
+
+                try {
+                    // Obtener productos del almacenamiento local
+                    var productosString = localStorage.getItem('productos');
+                    var productos = [];
+
+                    // Si hay productos existentes, analízalos
+                    if (productosString) {
+                        productos = JSON.parse(productosString);
+                    }
+
+                    // Agregar el nuevo producto a la lista
+                    productos.push(nuevoProducto);
+
+                    // Guardar la lista actualizada en el almacenamiento local
+                    localStorage.setItem('productos', JSON.stringify(productos));
+
+                    // Mostrar mensaje de éxito
+                    alert("El producto/servicio se ha agregado correctamente.");
+
+                    // Actualizar y mostrar los productos
+                    mostrarProductos();
+
+                    // Limpiar los campos del formulario
+                    document.getElementById('producto').value = '';
+                    document.getElementById('precio').value = '';
+                    document.getElementById('imagen').value = '';
+                } catch (error) {
+                    console.error('Error al agregar el producto:', error);
+                }
+            };
+
+            // Leer el contenido del archivo de imagen como una URL de datos
+            reader.readAsDataURL(imagen);
+        }
+
+        // Función para eliminar un producto
+        function eliminarProducto(index) {
+            if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+                try {
+                    // Obtener productos del almacenamiento local
+                    var productosString = localStorage.getItem('productos');
+                    var productos = [];
+
+                    // Si hay productos existentes, analízalos
+                    if (productosString) {
+                        productos = JSON.parse(productosString);
+                    }
+
+                    // Eliminar el producto del arreglo
+                    productos.splice(index, 1);
+
+                    // Guardar el arreglo actualizado en el almacenamiento local
+                    localStorage.setItem('productos', JSON.stringify(productos));
+
+                    // Actualizar y mostrar los productos
+                    mostrarProductos();
+                } catch (error) {
+                    console.error('Error al eliminar el producto:', error);
+                }
+            }
+        }
+
+        // Función para agregar al carrito (simulada)
+        function agregarAlCarrito(nombreProducto, precio) {
+            alert('Has agregado ' + nombreProducto + ' al carrito. Precio: $' + precio.toFixed(2) + ' ¡Gracias por preferirnos! ');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Proveedor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #6A5ACD;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input[type="text"], .form-group input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+
+        .button {
+            background-color: #6A5ACD;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+            .button:hover {
+                background-color: #483D8B;
+            }
+
+        .profile {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+            .profile h3 {
+                color: #6A5ACD;
+                margin-top: 0;
+            }
+
+            .profile p {
+                margin: 10px 0;
+            }
+
+        #login-form {
+            display: block;
+        }
+
+        #perfiles {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Perfil de Proveedor</h2>
+
+        <div class="form-group" id="login-form">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" placeholder="Ingrese la contraseña">
+            <button class="button" onclick="verPerfilAdmin()">Ingresar</button>
+        </div>
+
+        <div class="form-group" id="form-container">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" placeholder="Ingrese su nombre">
+        </div>
+
+        <div class="form-group" id="form-container">
+            <label for="empresa">Empresa:</label>
+            <input type="text" id="empresa" placeholder="Ingrese el nombre de su empresa">
+        </div>
+
+        <div class="form-group" id="form-container">
+            <label for="ubicacion">Ubicación:</label>
+            <input type="text" id="ubicacion" placeholder="Ingrese su ubicación">
+        </div>
+
+        <button class="button" onclick="guardarPerfil()">Guardar Perfil</button>
+
+        <div id="perfiles"></div>
+
+        <div id="profile"></div>
+    </div>
+
+    <script>
+        var perfiles = [];
+        var adminPassword = "contrasenaadmin";
+
+        function verPerfilAdmin() {
+            var password = document.getElementById('password').value;
+            if (password === adminPassword) {
+                document.getElementById('login-form').style.display = "none";
+                document.getElementById('perfiles').style.display = "block";
+                document.getElementById('form-container').style.display = "block";
+            } else {
+                alert("Contraseña incorrecta. Acceso denegado.");
+            }
+        }
+
+        function guardarPerfil() {
+            var nombre = document.getElementById('nombre').value;
+            var empresa = document.getElementById('empresa').value;
+            var ubicacion = document.getElementById('ubicacion').value;
+
+            perfiles.push({ nombre: nombre, empresa: empresa, ubicacion: ubicacion });
+
+            mostrarPerfiles();
+            limpiarFormulario();
+        }
+
+        function mostrarPerfiles() {
+            var container = document.getElementById('perfiles');
+            container.innerHTML = '';
+
+            perfiles.forEach(function (perfil, index) {
+                var div = document.createElement('div');
+                div.classList.add('profile');
+
+                var h3 = document.createElement('h3');
+                h3.textContent = 'Perfil de Proveedor ' + (index + 1);
+
+                var nombreP = document.createElement('p');
+                nombreP.innerHTML = '<strong>Nombre:</strong> ' + perfil.nombre;
+
+                var empresaP = document.createElement('p');
+                empresaP.innerHTML = '<strong>Empresa:</strong> ' + perfil.empresa;
+
+                var ubicacionP = document.createElement('p');
+                ubicacionP.innerHTML = '<strong>Ubicación:</strong> ' + perfil.ubicacion;
+
+                div.appendChild(h3);
+                div.appendChild(nombreP);
+                div.appendChild(empresaP);
+                div.appendChild(ubicacionP);
+
+                container.appendChild(div);
+            });
+        }
+
+        function limpiarFormulario() {
+            document.getElementById('nombre').value = '';
+            document.getElementById('empresa').value = '';
+            document.getElementById('ubicacion').value = '';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opción de Lugar de Entrega</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        form input[type="text"], form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #555;
+        }
+
+        form input[type="checkbox"] {
+            margin-right: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+            form input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Opción de Lugar de Entrega</h2>
+        <form id="formulario" action="#" method="post" onsubmit="return validarFormulario()">
+            <label for="direccion">Dirección de Entrega:</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección de entrega" required>
+
+            <label for="tipo_entrega">Tipo de Entrega:</label>
+            <select id="tipo_entrega" name="tipo_entrega">
+                <option value="normal">Normal</option>
+                <option value="express">Express</option>
+                <option value="entrega_tienda">Entrega en Tienda</option>
+            </select>
+
+            <label for="opciones_entrega">Opciones de Entrega:</label>
+            <input type="checkbox" id="seguimiento" name="seguimiento">
+            <label for="seguimiento">Seguimiento de Pedidos en Tiempo Real</label><br>
+
+            <input type="submit" id="confirmar" value="Confirmar Pedido">
+            <input type="submit" id="eliminar" value="Eliminar información" onclick="eliminarInformacion()">
+        </form>
+        <div id="ubicacion-guardada" class="footer"></div>
+
+        <div class="footer">Desarrollado por Tu Empresa - 2024</div>
+    </div>
+
+    <script>function validarFormulario() {
+            var direccion = document.getElementById("direccion").value;
+            if (direccion.trim() === "") {
+                alert("Por favor, ingrese una dirección de entrega.");
+                return false;
+            }
+
+            mostrarUbicacion();
+            return false;
+        }
+
+        function mostrarUbicacion() {
+            var direccion = document.getElementById("direccion").value;
+            var tipoEntrega = document.getElementById("tipo_entrega").value;
+            var seguimiento = document.getElementById("seguimiento").checked ? "Sí" : "No";
+
+            var ubicacionGuardada = document.getElementById("ubicacion-guardada");
+            ubicacionGuardada.innerHTML = "<strong>Última Ubicación:</strong><br>" +
+                "Dirección: " + direccion + "<br>" +
+                "Tipo de Entrega: " + tipoEntrega + "<br>" +
+                "Seguimiento en Tiempo Real: " + seguimiento;
+
+            alert("¡Pedido confirmado!");
+        }
+
+        function eliminarInformacion() {
+            document.getElementById("ubicacion-guardada").innerHTML = "";
+            document.getElementById("direccion").value = "";
+            document.getElementById("tipo_entrega").value = "normal";
+            document.getElementById("seguimiento").checked = false;
+        }</script>
+</body>
+</html>
